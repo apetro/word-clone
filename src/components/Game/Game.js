@@ -48,9 +48,9 @@ function Game() {
   return (
     <>
       <PriorGuesses guesses={guesses} correctAnswer={answer}/>
-      {gameOver() && (<EndGameBanner won={won()} attempts={guesses.length} correctAnswer={answer} restartFn={restart}/>)}
       <GuessBox addGuess={addGuess} gameOver={gameOver()}/>
-      <VisualKeyboard/>
+      <VisualKeyboard guesses={guesses} answer={answer}/>
+      {gameOver() && (<EndGameBanner won={won()} attempts={guesses.length} correctAnswer={answer} restartFn={restart}/>)}
     </>
   );
 }
