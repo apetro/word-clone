@@ -13,7 +13,7 @@ function VisualKeyboard() {
         return (
           <p className="guess" key={row[0]}>
             {row.map((letter) => {
-              return <VisualKey key={letter}>{letter}</VisualKey>;
+              return <VisualKey key={letter} status="unknown">{letter}</VisualKey>;
             })}
           </p>
         );
