@@ -7,6 +7,7 @@ import PriorGuesses from "../PriorGuesses";
 import EndGameBanner from "../EndGameBanner";
 import VisualKeyboard from "../VisualKeyboard";
 import {NUM_OF_GUESSES_ALLOWED } from "../../constants.js"
+import {checkGuess} from "../../game-helpers.js"
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -16,6 +17,7 @@ const answer = sample(WORDS);
 function Game() {
   const [answer, setAnswer] = React.useState(() => sample(WORDS));
   const [guesses, setGuesses] = React.useState([]);
+  const [checkedGuesses, setCheckedGuesses] = React.useState([]);
 
   function won() {
     return guesses.includes(answer);
@@ -38,18 +40,20 @@ function Game() {
     }
 
     setGuesses([...guesses, guess]);
+    setCheckedGuesses([...checkedGuesses, checkGuess(guess, answer)]);
   }
 
   function restart(){
     setGuesses([]);
+    setCheckedGuesses([]);
     setAnswer(sample(WORDS));
   }
 
   return (
     <>
-      <PriorGuesses guesses={guesses} correctAnswer={answer}/>
+      <PriorGuesses checkedGuesses={checkedGuesses}/>
       <GuessBox addGuess={addGuess} gameOver={gameOver()}/>
-      <VisualKeyboard guesses={guesses} answer={answer}/>
+      <VisualKeyboard checkedGuesses={checkedGuesses}/>
       {gameOver() && (<EndGameBanner won={won()} attempts={guesses.length} correctAnswer={answer} restartFn={restart}/>)}
     </>
   );

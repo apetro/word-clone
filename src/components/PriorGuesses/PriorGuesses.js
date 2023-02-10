@@ -1,25 +1,28 @@
 import React from "react";
 import Guess from "../Guess";
-import {range} from "../../utils.js"
-import {NUM_OF_GUESSES_ALLOWED} from "../../constants.js"
+import { range } from "../../utils.js";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants.js";
 
-function PriorGuesses({guesses, correctAnswer}) {
+function PriorGuesses({ checkedGuesses }) {
+  const unusedGuesses = NUM_OF_GUESSES_ALLOWED - checkedGuesses.length;
 
-  const unusedGuesses =  NUM_OF_GUESSES_ALLOWED - guesses.length;
+  const notYetGuessed = [
+    { letter: "", status: "" },
+    { letter: "", status: "" },
+    { letter: "", status: "" },
+    { letter: "", status: "" },
+    { letter: "", status: "" },
+  ];
 
   return (
     <div className="guess-results">
-      {guesses.map((guess) => {
-        return (
-          <Guess guess={guess} key={guess} correctAnswer={correctAnswer} />
-        );
+      {checkedGuesses.map((checkedGuess, index) => {
+        return <Guess checkedGuess={checkedGuess} key={index} />;
       })}
-      {range(0, unusedGuesses).map( rangeEntry => {
-        return (<Guess guess="" key={rangeEntry} />)
+      {range(0, unusedGuesses).map((rangeEntry) => {
+        return <Guess checkedGuess={notYetGuessed} key={rangeEntry} />;
       })}
-
-
-      </div>
+    </div>
   );
 }
 

@@ -1,8 +1,7 @@
 import React from "react";
 import VisualKey from "../VisualKey";
-import { checkGuess } from "../../game-helpers.js";
 
-function VisualKeyboard({ guesses, answer }) {
+function VisualKeyboard({ checkedGuesses}) {
 
   // strategy:
   // build an object with letter keys and status values
@@ -21,13 +20,6 @@ function VisualKeyboard({ guesses, answer }) {
   console.log("After seeding all letters, letter status map is ");
   console.log(letterStatusMap);
 
-  console.log("Guesses is ");
-  console.log(guesses);
-
-  const checkedGuesses = guesses.map((guess) => {
-    console.log(`Checking guess ${guess}.`);
-    return checkGuess(guess, answer);
-  });
 
   console.log("Checked guesses is");
   console.log(checkedGuesses);
