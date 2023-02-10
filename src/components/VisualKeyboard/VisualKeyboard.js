@@ -61,37 +61,19 @@ function VisualKeyboard({ checkedGuesses}) {
 
   // okay, letterStatusMap is now an object with letters as keys and known status of those letters as values.
 
-
-
+  // generate each row of the visual keybaord
   // rows are arrays of objects with properties letter and status.
   // letter is a single character, the letter ("A")
   // status is "" or a valid status, like "misplaced"
 
-
-
-  const topRowWithStatus = [..."QWERTYUIOP"].map(letter => {
-    const letterWithStatus = {};
-    letterWithStatus.letter = letter;
-    letterWithStatus.status = letterStatusMap[letter];
-    return letterWithStatus;
+  const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"].map(rowString => {
+    return [...rowString].map(letter => {
+      const letterWithStatus = {};
+      letterWithStatus.letter = letter;
+      letterWithStatus.status = letterStatusMap[letter];
+      return letterWithStatus;
+    })
   })
-
-  const middleRowWithStatus = [..."ASDFGHJKL"].map(letter => {
-    const letterWithStatus = {};
-    letterWithStatus.letter = letter;
-    letterWithStatus.status = letterStatusMap[letter];
-    return letterWithStatus;
-  })
-
-  const bottomRowWithStatus = [..."ZXCVBNM"].map(letter => {
-    const letterWithStatus = {};
-    letterWithStatus.letter = letter;
-    letterWithStatus.status = letterStatusMap[letter];
-    return letterWithStatus;
-  })
-
-
-  const rows = [topRowWithStatus, middleRowWithStatus, bottomRowWithStatus];
 
   return (
     <>
