@@ -17,22 +17,21 @@ function VisualKeyboard({ checkedGuesses}) {
 
   // collect letter statuses in several passes so that correct status overwrites misplaced status.
 
+  // a letter, once entirely incorrect, cannot later become misplaced in a subsequent guess.
+  // a letter, once misplaced, cannot leter become entirely incorrect in a subsequent guess.
+  // therefore we can collect both incorrect and misplaced status in a single pass.
   checkedGuesses.map((checkedGuess) => {
     checkedGuess.map(({ letter, status }) => {
-      if (status === "incorrect") {
+      if (status === "incorrect" || status === "misplaced") {
         letterStatusMap[letter] = status;
       }
     });
   });
 
-  checkedGuesses.map((checkedGuess) => {
-    checkedGuess.map(({ letter, status }) => {
-      if (status === "misplaced") {
-        letterStatusMap[letter] = status;
-      }
-    });
-  });
-
+  // however, a letter, once incorrect or misplaced, might subequently be guessed in its correct position
+  // or even guessed again at a misplaced position after having been guessed in the correct position
+  // therefore collect correct position guess status in a final pass, so that this status overwrites any
+  // misplaced status collected in the prior pass.
   checkedGuesses.map((checkedGuess) => {
     checkedGuess.map(({ letter, status }) => {
       if (status === "correct") {
