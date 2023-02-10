@@ -1,5 +1,15 @@
 # Word Game
 
+This is a clone of upstream joy-of-react, a hands on exercise in the excellent Joy of React course.
+
+If you are looking to do the exercise, you probably want to be looking directly at and forking the upstream repo.
+
+This repo here is my own working of this exercise.
+
+Here, the default branch is `andrew`, wherein I have worked the exercise.
+
+------
+
 ## Joy of React, Project I
 
 In this project, we'll recreate a popular online word game, Wordle:
