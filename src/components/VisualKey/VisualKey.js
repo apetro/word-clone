@@ -4,7 +4,7 @@ import React from "react";
 function VisualKey({children, status}) {
 
   return (
-    <span className={`cell ${status}`}>
+    <span className={`key ${status}`}>
       {children}
     </span>
   );

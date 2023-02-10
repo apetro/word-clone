@@ -57,9 +57,10 @@ function VisualKeyboard({ checkedGuesses }) {
 
   return (
     <>
+      <div className="visual-keyboard">
       {rows.map((row) => {
         return (
-          <p className="guess" key={row[0].letter}>
+          <div className="keyboard-row" key={row[0].letter}>
             {row.map(({ letter, status }) => {
               return (
                 <VisualKey key={letter} status={status}>
@@ -67,9 +68,10 @@ function VisualKeyboard({ checkedGuesses }) {
                 </VisualKey>
               );
             })}
-          </p>
+          </div>
         );
       })}
+      </div>
     </>
   );
 }
