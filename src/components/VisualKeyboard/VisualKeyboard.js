@@ -1,8 +1,7 @@
 import React from "react";
 import VisualKey from "../VisualKey";
 
-function VisualKeyboard({ checkedGuesses}) {
-
+function VisualKeyboard({ checkedGuesses }) {
   // strategy:
   // build an object with letter keys and status values
   // use that object as the key to what status each VisualKey should have.
@@ -47,14 +46,14 @@ function VisualKeyboard({ checkedGuesses}) {
   // letter is a single character, the letter ("A")
   // status is "" or a valid status, like "misplaced"
 
-  const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"].map(rowString => {
-    return [...rowString].map(letter => {
+  const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"].map((rowString) => {
+    return [...rowString].map((letter) => {
       const letterWithStatus = {};
       letterWithStatus.letter = letter;
       letterWithStatus.status = letterStatusMap[letter];
       return letterWithStatus;
-    })
-  })
+    });
+  });
 
   return (
     <>
