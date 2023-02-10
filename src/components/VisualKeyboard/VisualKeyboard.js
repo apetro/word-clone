@@ -8,21 +8,12 @@ function VisualKeyboard({ checkedGuesses}) {
   // use that object as the key to what status each VisualKey should have.
 
   const letterStatusMap = {};
-  console.log("Initialized letter status map to:");
-  console.log(letterStatusMap);
 
   // letterStatusMap initially includes all letters, defaulting to a "" status.
 
   [..."QWERTYUIOPASDFGHJKLZXCVBNM"].map((letter) => {
     letterStatusMap[letter] = "";
   });
-
-  console.log("After seeding all letters, letter status map is ");
-  console.log(letterStatusMap);
-
-
-  console.log("Checked guesses is");
-  console.log(checkedGuesses);
 
   // collect letter statuses in several passes so that correct status overwrites misplaced status.
 
@@ -34,9 +25,6 @@ function VisualKeyboard({ checkedGuesses}) {
     });
   });
 
-  console.log("After processing incorrect letters, letterStatusMap is");
-  console.log(letterStatusMap);
-
   checkedGuesses.map((checkedGuess) => {
     checkedGuess.map(({ letter, status }) => {
       if (status === "misplaced") {
@@ -45,9 +33,6 @@ function VisualKeyboard({ checkedGuesses}) {
     });
   });
 
-  console.log("After processing misplaced letter, letter status map is");
-  console.log(letterStatusMap);
-
   checkedGuesses.map((checkedGuess) => {
     checkedGuess.map(({ letter, status }) => {
       if (status === "correct") {
@@ -55,9 +40,6 @@ function VisualKeyboard({ checkedGuesses}) {
       }
     });
   });
-
-  console.log("After processing correct letters, letterStatusMap is");
-  console.log(letterStatusMap);
 
   // okay, letterStatusMap is now an object with letters as keys and known status of those letters as values.
 
